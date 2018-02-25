@@ -37,6 +37,32 @@ public class InvoiceTest {
 	}
 
 	@Test
+	public void testInvoiceHasNumber(){
+		int number = invoice.getInvoiceNumber();
+		Assert.assertThat(number, Matchers.greaterThan(0));	
+	}
+	
+	@Test
+	public void testInvoiceHasTwoNumbers(){
+		int number = invoice.getInvoiceNumber();
+		Invoice invoice2 = new Invoice();
+		int number2 = invoice2.getInvoiceNumber();
+		Assert.assertNotEquals(number, number2);	
+	}
+	
+	@Test
+	public void hasTheSameNumber(){
+		int number  = invoice.getInvoiceNumber();
+		int number2 = invoice.getInvoiceNumber();
+		Assert.assertEquals(number, number2);
+	}
+	
+//	@Test
+//	public void secondInvoiceTestGreaterNumber(){
+//		Assert.assertThat(invoice.getInvoiceNumber(), Matchers.lessThan(new Invoice().getInvoiceNumber()));
+//	}
+	
+	@Test
 	public void testInvoiceHasTheSameSubtotalAndTotalIfTaxIsZero() {
 		Product taxFreeProduct = new TaxFreeProduct("Warzywa", new BigDecimal("199.99"));
 		invoice.addProduct(taxFreeProduct);
